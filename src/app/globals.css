@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+  /* Paleta exacta del sitio geamar.cl (Astra global colors) */
+  --color-0: #54b435;
+  --color-1: #379237;
+  --color-2: #0f172a;
+  --color-3: #2f3b40;
+  --color-4: #ffffff;
+  --color-5: #edfbe2;
+  --color-6: #0c1406;
+  --color-7: #d5ead8;
+  --green-dark: #17511c;
+  --green-sage: #79a182;
+  --footer-bg: #212121;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-brand: var(--color-0);
+  --color-brand-dark: var(--color-1);
+  --color-green-dark: var(--green-dark);
+  --color-green-sage: var(--green-sage);
+  --color-footer: var(--footer-bg);
+  --font-sans: "Poppins", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Compensa el header fijo al navegar por anclas (#nosotros, #ofrecemos, ...) */
+section[id],
+div[id] {
+  scroll-margin-top: 90px;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+/* Header fijo (igual que .site-header del original) */
+.site-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+/* ---------- Animaciones ---------- */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-left {
+  animation: fadeInLeft 0.8s ease-out;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Marquee de logos de clientes */
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 30s linear infinite;
+}
+
+.marquee-container:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Efecto typewriter del hero (equivale al animated text block del original) */
+@keyframes blinkCaret {
+  50% {
+    opacity: 0;
+  }
+}
+
+.typewriter-caret {
+  animation: blinkCaret 0.8s step-end infinite;
+}
